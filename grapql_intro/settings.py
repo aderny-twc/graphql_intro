@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-#8b4jl%sm4=u0^1t01(lscvlv4#@rvblsp(+an8lr(lukr7f9l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -142,14 +142,15 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-# GRAPHQL_JWT = {
-#     "JWT_ALLOW_ANY_CLASSES": [
-#         "graphql_auth.mutations.Register",
-#         "graphql_auth.mutations.VerifyAccount",
-#         "graphql_auth.mutations.ObtainJSONWebToken",
-#     ],
-#     "JWT_VERIFY_EXPIRATION": True,
-#     "JWT_LONG_RUNNING_REFRESH_TOKEN": True,
-# }
+GRAPHQL_JWT = {
+    "JWT_ALLOW_ANY_CLASSES": [
+        "graphql_auth.mutations.Register",
+        # "graphql_auth.mutations.VerifyAccount",
+        # "graphql_auth.mutations.ObtainJSONWebToken",
+    ],
+    "JWT_VERIFY_EXPIRATION": True,
+    "JWT_LONG_RUNNING_REFRESH_TOKEN": True,
+}
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
