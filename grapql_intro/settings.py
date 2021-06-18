@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'graphene_django',
 
     'books',
+    'quiz',
 ]
 
 MIDDLEWARE = [
