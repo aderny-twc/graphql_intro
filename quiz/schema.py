@@ -26,14 +26,15 @@ class QuestionType(DjangoObjectType):
 class AnswerType(DjangoObjectType):
     class Meta:
         model = Answer
-        fields = ("question", "answer_text")
+        fields = ("question", "answer_text", "is_right")
 
 
 class Query(graphene.ObjectType):
 
     all_questions = graphene.Field(QuestionType, id=graphene.Int())
     all_answers = graphene.List(AnswerType, id=graphene.Int())
-    all_quizzes = DjangoListField(QuizzesType)
+    # all_quizzes = DjangoListField(QuizzesType)
+    all_quizzes = graphene.List(QuizzesType)
 
     quiz = graphene.String()
 
@@ -42,6 +43,9 @@ class Query(graphene.ObjectType):
 
     def resolve_all_answers(root, info, id):
         return Answer.objects.filter(question=id)
+
+    def resolve_all_quizzes(root, into):
+        return Quizzes.objects.filter(pk=2)
 
     def resolve_quiz(root, info):
         return f"This is some line"
